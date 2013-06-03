@@ -2,38 +2,64 @@
 # 
 # Find the sum of all the primes below two million.
 
-class Integer # takes FOREVER!!!
-  def prime?
-    prime = true
-  
-    if self <= 1
-      prime = false
-    elsif self == 2
-      prime = true
-    elsif self % 2 == 0
-      prime = false
-    else 
-      m = 3
-      while m < self
-        if self % m == 0
-          prime = false
-          break
-        else 
-          m+=2
-        end
-      end 
-      prime 
-    end
+class Prime
+  attr_accessor :number
+
+  def initialize(number, array) 
+    @number = number.to_i
+    @start = 3 
+    @array = array
   end
 
-  primes = []
-  for i in 1..2000000
-    primes << i if i.prime?
-    puts primes
+  def manipulate(test)
+    array = remove(test)
+    @array.delete_if { |numbers| array.include?(number) }
   end
-  sum = 0
-  primes.each do |p|
-    sum += p
+
+  def remove(test)
+    remove = []
+    @number.times do |number|
+      if test * number < @number
+        remove << number
+      else
+        break
+      end
+    end
+    remove
   end
-  puts sum
+
+  def sqrt
+    Math.sqrt(@number).round(0)
+  end
+
+  def prime?
+    while @start <= sqrt
+      if @number % @start == 0 
+        return false
+      else
+        @start += 2
+      end
+    end
+    true 
+  end
+
+  def even?
+    @number % 2 == 0 ? true : false
+  end
 end
+
+prime_numbers = []
+prime_numbers << 2
+prime_numbers << 3
+
+a = [3]
+(4..2000000).each do |test|
+  p test
+  a << test
+  dollar = Prime.new(test, a)
+   if !dollar.even? && dollar.prime?
+    prime_numbers << test
+  end
+end
+
+p prime_numbers.inject(&:+)

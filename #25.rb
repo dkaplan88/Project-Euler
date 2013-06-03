@@ -24,13 +24,14 @@ b = 144
 c = 0
 
 fibonacci_number = 12
-digits = '1' + '0' * 999
-until c >= digits.to_i
+until c.to_s.length == 1000
   c = a + b
   a = b
   b = c
   fibonacci_number += 1
 end
+
+p fibonacci_number
 
 # fibonacci_number => 4782
 # time => 280 milliseconds

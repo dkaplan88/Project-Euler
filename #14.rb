@@ -50,5 +50,4 @@ longest = 0
     answer = number
   end
 end
-
 p answer # => 837799

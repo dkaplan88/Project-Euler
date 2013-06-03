@@ -2,9 +2,7 @@
 # 3 + 2 + 7 + 6 + 8 = 26.
 # What is the sum of the digits of the number 2**1000?
 
-answer = (2**1000).to_s
-                  .split('')
-                  .collect{ |i| i.to_i}
-                  .inject(&:+)
+sum = 0 
+(2**1000).to_s.each_char { |char| sum += char.to_i}
 
-# answer => 1366
+# sum => 1366

@@ -2,7 +2,7 @@
 # 
 # What is the largest prime factor of the number 600851475143?
 
-a = []
+answer = 0
 product_sum = 1
 
 def prime(number)
@@ -13,19 +13,17 @@ def prime(number)
   end
 end
 
-
-(2..600851475143).each do |x|
-  if 600851475143 % x == 0
-    if prime x
-      a << x
-      product_sum *= x
+(2..600851475143).each do |num|
+  if 600851475143 % num == 0
+    if prime num
+      answer = num
+      product_sum *= num
       if product_sum >= 600851475143
-        break
+        break 
       end
     end
   end
 end
 
-prime 600851475143
-puts "The answer is #{a.last}"
+#answer => 6857
 
